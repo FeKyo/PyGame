@@ -64,7 +64,7 @@ while True:
     screen = pygame.display.set_mode((500))
     pygame.display.set.caption("Eventos")
 
-    running = true
+    running = True
     while running:
         for event in pygame.event.get():
             print(event)
