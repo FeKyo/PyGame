@@ -1,5 +1,11 @@
 import pygame
+import random
 pygame.init()
+
+def on_grid_random():
+    x = random.randint(0,59)
+    y = random.randint(0,59)
+    return(x*10, y*10)
 
 UP = 0 
 RIGHT = 1
@@ -12,6 +18,10 @@ pygame.display.set_caption('Snake')
 snake = [(200, 200),(210, 200), (220,200)]
 snake_skin = pygame.Surface((10,10))
 snake_skin.fill((255,255,255)) #BRANCO
+
+apple_pos = on_grid_random()
+apple = pygame.Surface((10,10))
+apple.fill((255, 0, 0))
 
 my_direction = LEFT
 
@@ -42,6 +52,7 @@ while True:
         snake[0] = (snake[0][0] - 10, snake[0][1])
 
     screen.fill((0,0,0))
+    screen.blit(apple, apple_pos)
     for pos in snake:
         screen.blit(snake_skin,pos)
     pygame.display.update()
