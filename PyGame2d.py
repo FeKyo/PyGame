@@ -12,10 +12,10 @@ UP = 0
 RIGHT = 1
 DOWN = 2
 LEFT = 3
-WIDTH = 600
-HEIGHT = 600
+width = 600
+height = 600
 
-screen = pygame.display.set_mode((600, 600))
+screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Snake')
 
 snake = [(200, 200),(210, 200), (220,200)]
@@ -78,10 +78,11 @@ FPS = 60
 
 
 running = True
-player_image = pygame.image.load
-('goat.png').convert_alpha()
+player_image = pygame.image.load('goat.png')
+player_image.convert()
 player = pygame.transform.scale
 (player_image, (50, 75))
+
 moving_right = False
 moving_left = False
 @dataclass
@@ -101,11 +102,18 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT: moving_left = True#my_direction = LEFT
-            if event.key == pygame.K_RIGHT: moving_right = True#my_direction = RIGHT
+            if event.key == pygame.K_LEFT: moving_left = True #my_direction = LEFT
+            if event.key == pygame.K_RIGHT: moving_right = True #my_direction = RIGHT
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_LEFT: moving_left = False#my_direction = LEFT
-            if event.key == pygame.K_RIGHT: moving_right = False#my_direction = RIGHT
-        if player_Location.x < 0: 
+            if event.key == pygame.K_LEFT: moving_left = False #my_direction = LEFT
+            if event.key == pygame.K_RIGHT: moving_right = False #my_direction = RIGHT
+
+        if player_Location.x < 0:
             player_Location.x = 0
-        if player_Location.x + player.pygame.get_width() > WIDTH: player_Location.x = WIDTH - player.get_width()
+        if player_Location.x + player.get_width() > width:
+            player_Location.x = width - player.get_width()
+
+        pygame.display.updte()
+        clock.tick(FPS)
+    
+pygame.quit()
