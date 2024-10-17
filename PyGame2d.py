@@ -110,8 +110,12 @@ BLUE = (0, 0, 255)
 pygame.init()
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("ROWLET É GOAT")
+pygame.display.set_caption("MoonLight Sonata - Beethoven")
 clock = pygame.time.Clock()
+sound = pygame.mixer.Sound('videoplayback.ogg')
+sound.set_volume(0.7)
+myriad_pro_font = pygame.font.SysFont("Arial", 48)
+text = myriad_pro_font.render("p = play | s = stop", 1, WHITE)
 
 running = True
 while running:
@@ -119,8 +123,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_p:
+                sound.play()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_s:
+                sound.stop()
 
     screen.fill(BLUE)
+    screen.blit(text, (100,50))
     pygame.display.flip()
 
 pygame.quit()
